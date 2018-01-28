@@ -11,10 +11,10 @@ import java.util.Arrays;
 public class ArrayUtilsTest {
     @Test
     public void printRandomArrayDeclaration() {
-        Integer[] intArray = RandomUtils.createIntegers(0, 6, 12);
+        Integer[] intArray = RandomUtils.createIntegers(0, 25, 50);
         Arrays.sort(intArray);
 
-        System.out.println("Integer[] intArray = " + Arrays.toString(intArray)
+        System.out.println("Integer[] intArray = new Integer[]" + Arrays.toString(intArray)
                 .replace("[", "{")
                 .replace("]", "}") + ";");
     }
