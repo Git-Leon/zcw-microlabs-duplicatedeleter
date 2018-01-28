@@ -16,50 +16,23 @@ public class DuplicateDeleterTest {
 
     @Before
     public void setup() {
-        this.intArray = new Integer[]{1, 1, 1, 23, 45, 23, 45, 20, 21, };
+        this.intArray = new Integer[]{1, 1, 1, 20, 21, 23, 23, 45, 45};
         this.deleter = new DuplicateDeleter(intArray);
     }
 
 
     @Test
     public void testRemoveDuplicates() {
-        Integer[] expected = new Integer[]{23, 45, 23, 45, 20};
+        Integer[] expected = new Integer[]{20, 21, 23, 23, 45, 45};
         Integer[] actual = deleter.removeDuplicatesExactly(3);
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void testGetNumberOfOccurences() {
-        int expected = 3;
-        int actual = ArrayUtils.getNumberOfOccurences(intArray, 1);
-
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void test() {
-        int maxNumberOfOccurrences = 2;
-        Integer[] input = new Integer[]{1, 1, 1, 23, 45, 23, 45, 20};
-        DuplicateDeleter deleter = new DuplicateDeleter(input);
-        Integer[] result = deleter.removeDuplicates(maxNumberOfOccurrences);
-
-        System.out.println("Max Number of Duplications = " + maxNumberOfOccurrences);
-        System.out.println("Input array:\n\t" + Arrays.toString(input));
-        System.out.println("\nResulting array:\n\t" + Arrays.toString(result));
+        TestUtils.assertArrayEquality(expected, actual);
     }
 
 
     @Test
-    public void testRandom() {
-        int maxNumberOfOccurrences = 2;
-        int minVal = 1;
-        int maxVal = 9;
-        Integer[] input = RandomUtils.createIntegers(minVal, maxVal, maxVal * 2);
-        DuplicateDeleter deleter = new DuplicateDeleter(input);
-        Integer[] result = deleter.removeDuplicates(maxNumberOfOccurrences);
-
-        System.out.println("Max Number of Duplications = " + maxNumberOfOccurrences);
-        System.out.println("Input array:\n\t" + Arrays.toString(input));
-        System.out.println("\nResulting array:\n\t" + Arrays.toString(result));
+    public void testRemoveDuplicates() {
+        Integer[] expected = new Integer[]{20, 21, 23, 23, 45, 45};
+        Integer[] actual = deleter.removeDuplicatesExactly(3);
+        TestUtils.assertArrayEquality(expected, actual);
     }
 }

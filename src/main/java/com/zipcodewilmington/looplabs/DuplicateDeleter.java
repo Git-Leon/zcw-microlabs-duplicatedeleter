@@ -13,42 +13,25 @@ public class DuplicateDeleter {
         this.intArray = intArray;
     }
 
-    public Integer[] removeDuplicates(int exactNumberOfOccurrences) {
+    public Integer[] removeDuplicates(int maxNumberOfDuplications) {
         Integer[] arrayCopy = intArray.clone();
-
-        for (int i = 0; i < arrayCopy.length; i++) {
-            int currentValue = arrayCopy[i];
-            int numberOfOccurences = ArrayUtils.getNumberOfOccurences(intArray, currentValue);
-
-            if (numberOfOccurences == exactNumberOfOccurrences) {
-                arrayCopy = removeValue(arrayCopy, currentValue);
-            }
+        for(int i=arrayCopy.length; i>maxNumberOfDuplications; i--) {
+            arrayCopy = removeDuplicatesExactly(i);
         }
         return arrayCopy;
     }
 
-    private Integer[] removeValue(Integer[] arrayCopy, int valToRemove) {
-        int numberOfOccurrences = ArrayUtils.getNumberOfOccurences(arrayCopy, valToRemove);
-        int newArrayLength = arrayCopy.length - numberOfOccurrences;
-        Integer[] newArray = new Integer[newArrayLength];
+    public Integer[] removeDuplicatesExactly(int exactNumberOfDuplications) {
+        Integer[] arrayCopy = intArray.clone();
 
-        for (int i = 0; i < newArrayLength; i++) {
+        for(int i=0; i<arrayCopy.length;i++) {
             int currentValue = arrayCopy[i];
+            int numberOfOccurrences = ArrayUtils.getNumberOfOccurences(arrayCopy, currentValue);
 
-            if (currentValue != valToRemove) {
-                newArray[i] = currentValue;
+            if(numberOfOccurrences == exactNumberOfDuplications) {
+                arrayCopy = ArrayUtils.removeValue(arrayCopy, currentValue);
             }
         }
-
-        verifyContents(newArray);
-        return newArray;
-    }
-
-    private void verifyContents(Integer[] intArray) {
-        assert !ArrayUtils.contains(intArray, null);
-    }
-
-    public Integer[] removeDuplicatesExactly(int i) {
-        return new Integer[0];
+        return arrayCopy;
     }
 }

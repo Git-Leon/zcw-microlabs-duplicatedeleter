@@ -45,18 +45,31 @@ public class ArrayUtilsTest {
     public void testRemoveValue() {
         Integer[] intArray = {0, 0, 1, 2, 2, 3, 3, 3, 4, 5, 5, 5};
         Integer[] expected = {0, 0, 1, 2, 2, 4, 5, 5, 5};
-        String expectedString  = Arrays.toString(expected);
         int valToRemove = 3;
-
-        Integer[] actual = ArrayUtils.removeValue(intArray, valToRemove);
-        String actualString = Arrays.toString(actual);
-        Assert.assertEquals(expectedString, actualString);    }
+        testRemoveValue(intArray, valToRemove, expected);
+    }
 
     @Test
     public void testRemoveValue1() {
         Integer[] intArray = {0, 0, 1, 2, 2, 3, 3, 3, 4, 5, 5, 5};
         Integer[] expected = {0, 0, 1, 3, 3, 3, 4, 5, 5, 5};
         int valToRemove = 2;
+        testRemoveValue(intArray, valToRemove, expected);
+    }
+
+    @Test
+    public void testRemoveValue2() {
+        Integer[] intArray = {0, 0, 1, 2, 2, 3, 3, 3, 4, 5, 5, 5};
+        Integer[] expected = {0, 0, 1, 2, 2, 3, 3, 3, 4};
+        int valToRemove = 5;
+        testRemoveValue(intArray, valToRemove, expected);
+    }
+
+    @Test
+    public void testRemoveValue3() {
+        Integer[] intArray = {0, 0, 1, 2, 2, 3, 3, 3, 4, 5, 5, 5};
+        Integer[] expected = {0, 0, 1, 2, 2, 3, 3, 3, 5, 5, 5};
+        int valToRemove = 4;
         testRemoveValue(intArray, valToRemove, expected);
     }
 
