@@ -3,26 +3,77 @@ package com.zipcodewilmington.looplabs;
 import java.util.Random;
 
 /**
- * Created by leon on 1/26/18.
+ * @author leon.hunter
  */
 public final class RandomUtils {
     private static volatile Random random = new Random();
 
-    private RandomUtils() {}
+    private RandomUtils() {
+    }
+    /**
+     * @param min
+     * @param max
+     * @return a random character between the specified min and max character range
+     */
+    public static Character createCharacter(char min, char max) {
+        return (char) createInteger((int) min, (int) max).intValue();
+    }
 
+    /**
+     * @param min
+     * @param max
+     * @return a random float between the specified minimum and maximum numeric range
+     */
     public static synchronized Float createFloat(float min, float max) {
         return random.nextFloat() * (max - min) + min;
     }
 
-    public static Integer createInteger(int min, int max) {
+    /**
+     * @param min
+     * @param max
+     * @return a random integer between the specified minimum and maximum numeric range
+     */
+    public static Integer createInteger(Integer min, Integer max) {
         return createFloat(min, max).intValue();
     }
 
+    /**
+     * @param min
+     * @param max
+     * @return an array the specified length containing integers in the specified range
+     */
     public static Integer[] createIntegers(int min, int max, int length) {
-        Integer[] intArray = new Integer[length];
+        Integer[] integers = new Integer[length];
         for(int i=0; i<length; i++) {
-            intArray[i] = createInteger(min, max);
+            integers[i] = createInteger(min, max);
         }
-        return intArray;
+        return integers;
+    }
+
+    /**
+     * @param min
+     * @param max
+     * @return a random string of the specified length containing characters in the specified range
+     */
+    public static String createString(char min, char max, int length) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < length; i++) {
+            sb.append(createCharacter(min, max));
+        }
+        return sb.toString();
+    }
+
+
+    /**
+     * @param min
+     * @param max
+     * @return an array containing arrays of specified length containing characters in the specified range
+     */
+    public static String[] createStrings(char min, char max, int stringLength, int arrayLength) {
+        String[] array = new String[arrayLength];
+        for(int i=0; i<arrayLength; i++) {
+            array[i] = createString(min, max, stringLength);
+        }
+        return array;
     }
 }

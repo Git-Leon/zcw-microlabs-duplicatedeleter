@@ -7,15 +7,15 @@ import org.junit.Test;
  * Created by leon on 1/25/18.
  * @ATTENTION_TO_STUDENTS - You are forbidden from editing this class.
  */
-public class DuplicateDeleterTest {
+public class IntegerDuplicateDeleterTest {
 
     private static Integer[] intArray;
-    private static DuplicateDeleter<Integer> deleter;
+    private static volatile DuplicateDeleter<Integer> deleter;
 
     @Before
     public void setup() {
         this.intArray = new Integer[]{0, 0, 0, 1, 2, 2, 4, 4, 5, 5, 5, 6, 9, 9, 9};
-        this.deleter = new DuplicateDeleter(intArray);
+        this.deleter = new IntegerDuplicateDeleter(intArray);
     }
 
 
