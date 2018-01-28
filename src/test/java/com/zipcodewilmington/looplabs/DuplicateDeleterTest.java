@@ -10,7 +10,7 @@ import org.junit.Test;
 public class DuplicateDeleterTest {
 
     private static Integer[] intArray;
-    private static DuplicateDeleter deleter;
+    private static DuplicateDeleter<Integer> deleter;
 
     @Before
     public void setup() {
@@ -40,6 +40,18 @@ public class DuplicateDeleterTest {
     public void testRemoveDuplicates2() {
         Integer[] expected = new Integer[]{0, 0, 0, 2, 2, 4, 4, 5, 5, 5, 9, 9, 9};
         Integer[] actual = deleter.removeDuplicatesExactly(1);
+        TestUtils.assertArrayEquality(expected, actual);
+    }
+
+
+    @Test
+    public void testRemoveDuplicates3() {
+        Integer[] expected = new Integer[]{1, 2, 2, 4, 4, 6};
+        deleter.removeDuplicates(3);
+        deleter.removeDuplicatesExactly(2);
+        deleter.removeDuplicatesExactly(1);
+
+        Integer[] actual = deleter.removeDuplicatesExactly(3);
         TestUtils.assertArrayEquality(expected, actual);
     }
 }
