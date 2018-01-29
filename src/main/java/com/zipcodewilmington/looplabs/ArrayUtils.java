@@ -10,7 +10,7 @@ public class ArrayUtils<T> {
     public static <T> int getNumberOfOccurences(T[] objectArray, T value) {
         int occurrences = 0;
         for (T val : objectArray) {
-            boolean sameValue = val == value;
+            boolean sameValue = val.equals(value);
             if (sameValue) {
                 occurrences++;
             }
@@ -26,7 +26,7 @@ public class ArrayUtils<T> {
         for (int i = 0, j = 0; j < newArrayLength; i++) {
             T currentValue = array[i];
 
-            if (currentValue != valToRemove) {
+            if (!currentValue.equals(valToRemove)) {
                 newArray[j] = currentValue;
                 j++;
             }
